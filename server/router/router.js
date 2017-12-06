@@ -5,6 +5,7 @@ const passportService = require('../services/passport');
 
 // Auth strategies
 const requireAuth = passport.authenticate('jwt', { session: false });
+const requireSignin = passport.authenticate('local', { session: false });
 
 
 module.exports = (app) => {
@@ -16,7 +17,7 @@ module.exports = (app) => {
 
 
     // Sign in
-    app.post('/signin', Auth.signin);
+    app.post('/signin', requireSignin, Auth.signin);
 
 
 

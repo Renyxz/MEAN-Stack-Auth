@@ -48,6 +48,24 @@ userSchema.pre('save', function(next) {
 });
 
 
+
+// Compare encrypted passwords
+userSchema.methods.comparePassword = function(candidatePassword, callback) {
+
+    bcrypt.compare(candidatePassword, this.password, (error, isMatch) => {
+        
+        // In caswe of an error, return callback with error:
+        if (error) return callback(error);
+
+        // Otherwise, verify passwords are matched:
+        callback(null, isMatch);
+
+    });
+
+} 
+
+
+
 // Create user model
 const model = mongoose.model('user', userSchema);
 
