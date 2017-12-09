@@ -14,6 +14,9 @@ import { SignInComponent } from './components/sign-in/sign-in.component';
 import { SignUpComponent } from './components/sign-up/sign-up.component';
 
 
+// Services
+import { ValidateService } from './services/validate.service';
+
 
 // App routes
 const appRoutes: Routes = [
@@ -56,7 +59,9 @@ const appRoutes: Routes = [
     FormsModule,
     RouterModule.forRoot(appRoutes)
   ],
-  providers: [],
+  providers: [
+    ValidateService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
