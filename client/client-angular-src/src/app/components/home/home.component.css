@@ -1,0 +1,22 @@
+.jumbotron {
+    background: none;
+    margin-bottom: 0;
+}
+
+.mean-logos > img {
+    max-width: 100px;
+    margin: 2rem 2rem 0rem;
+}
+
+
+/* Media query */
+/* Extra small devices (portrait phones, less than 576px) */
+@media (max-width: 575px) {
+    .jumbotron > h1 {
+        font-size: 2.5rem;
+    }
+
+    .mean-logos > img {
+        max-width: 70px;
+    }
+}
