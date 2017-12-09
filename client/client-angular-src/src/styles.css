@@ -12,3 +12,18 @@
     margin-top: 1rem;
     border-radius: 2rem;    
 }
+
+
+/* Flash message */
+.flash-message {
+    position: absolute;
+    width: 100%;
+    border-radius: 0;
+    -webkit-animation: fade-in 1s linear; 
+    animation: fade-in 0.2s linear; 
+}
+
+@keyframes fade-in {
+    0%   { opacity: 0; }
+    100% { opacity: 1; }
+}
