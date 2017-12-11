@@ -1,5 +1,6 @@
 const http = require('http');
 const config = require('../config/config');
+const cors = require('cors');
 const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
@@ -25,6 +26,11 @@ mongoose.connect(config.db, {
 mongoose.connection.on('connected', () => {
     console.log('Connected to database: ', config.db);
 });
+
+
+
+// CORS setup
+app.use(cors());
 
 
 
