@@ -11,7 +11,7 @@ export class ValidateService {
   validateSignUp(user) {
 
     switch (undefined) {
-      case user.username:
+      case user.email:
       case user.password:
         return false;
 
