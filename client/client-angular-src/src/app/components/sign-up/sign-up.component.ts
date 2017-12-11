@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { FlashMessagesService } from 'angular2-flash-messages';
 import { ValidateService } from '../../services/validate.service';
+import { AuthService } from '../../services/auth.service';
 
 
 
@@ -11,13 +13,15 @@ import { ValidateService } from '../../services/validate.service';
 })
 export class SignUpComponent implements OnInit {
 
-  username: String;
+  email: String;
   password: String;
 
 
 
-  constructor(private vs: ValidateService,
-              private fms: FlashMessagesService) { }
+  constructor(private router: Router,
+              private vs: ValidateService,
+              private fms: FlashMessagesService,
+              private as: AuthService) { }
 
   ngOnInit() {
   }
@@ -29,7 +33,7 @@ export class SignUpComponent implements OnInit {
 
     // User object
     const user = {
-      username: this.username,
+      email: this.email,
       password: this.password
     };
 
@@ -42,7 +46,7 @@ export class SignUpComponent implements OnInit {
 
 
     // Validate email format
-    const email = user.username;
+    const email = user.email;
 
     if (!this.vs.validateEmail(email)) {
       this.fms.show('Invalid email format.', { cssClass: 'alert-danger' });
@@ -50,6 +54,22 @@ export class SignUpComponent implements OnInit {
       return false;
     }
 
+
+    // Sign up user
+    this.as.registerUser(user).subscribe( data => {
+
+      // On successful sign up:
+      if (data.success) {
+
+        this.fms.show(data.msg, { cssClass: 'alert-success' });
+        this.router.navigate(['/signin']);
+
+      } else {
+        // If sign up failed:
+        this.fms.show(data.msg, { cssClass: 'alert-danger' });
+      }
+
+    });
   }
 
 }
