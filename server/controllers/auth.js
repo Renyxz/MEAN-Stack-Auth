@@ -26,12 +26,28 @@ exports.signup = (req, res, next) => {
         // Save user
         user.save( (error) => {
 
-            // In case of duplicate users error:
-            if (error) return res.status(422).send({ error: 'User already exists.' });
+            // In case of duplicate user error:
+            const alreadyExists = 11000;
+            
+            if (error && error.code === alreadyExists) {
+
+                return res.json({
+                    success: false, 
+                    msg: 'There is already an account signed up with this email!'
+                });
+
+            }
+
     
-            // Respond to request:
-            res.json({ token: userToken(user) });
+            // Otherwise, respond to request:
+            res.json({
+                success: true, 
+                msg: 'You are now a user!',
+                token: userToken(user)
+            });
+
         });
+
     });    
 
 }
