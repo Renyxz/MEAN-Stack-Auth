@@ -39,7 +39,7 @@ export class SignUpComponent implements OnInit {
 
 
     // Validate required fields
-    if (!this.vs.validateSignUp(user)) {
+    if (!this.vs.validateInput(user)) {
       this.fms.show('Please complete all fields.', { cssClass: 'alert-danger' });
       return false;
     }

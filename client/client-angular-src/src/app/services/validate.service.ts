@@ -8,7 +8,7 @@ export class ValidateService {
 
 
   // Validate input fields required for sign up
-  validateSignUp(user) {
+  validateInput(user) {
 
     switch (undefined) {
       case user.email:
