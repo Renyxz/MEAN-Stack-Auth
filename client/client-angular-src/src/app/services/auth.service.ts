@@ -25,4 +25,16 @@ export class AuthService {
     return result.map( res => res.json() );
   }
 
+
+  // Sign in user on back-end
+  signInUser(user) {
+    const headers = new Headers();
+
+    headers.append('Content-type', 'application/json');
+
+    const result = this.http.post('http://localhost:4000/signin', user, { headers: headers });
+
+    return result.map( res => res.json );
+  }
+
 }
